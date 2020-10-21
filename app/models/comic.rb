@@ -12,14 +12,13 @@ class Comic < ActiveRecord::Base
         #binding.pry
     end
 
-    def all_comics_by_author(author)
+    
+    def self.all_comics_by_author(author)
         #returns all comics by a given author
-        Comic.where(author: author).pluck(:title).join(", ")
-        binding.pry
+        self.all.where(author: author).pluck(:title).join(", ")
+        #binding.pry
     end
-
-
-
-
+    
 
 end
+
