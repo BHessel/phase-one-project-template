@@ -27,5 +27,5 @@ senses = Power.find_or_create_by(name: "spidy senses")
 
 
 
-binding.pry
+#binding.pry
 0

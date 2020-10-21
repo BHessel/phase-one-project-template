@@ -1,4 +1,5 @@
 class Superhero < ActiveRecord::Base
+    self.table_name = "superheroes"
     has_many :superhero_powers
     has_many :powers, through: :superhero_powers
     has_many :superhero_comics
