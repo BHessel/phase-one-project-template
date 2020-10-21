@@ -4,5 +4,16 @@ class Superhero < ActiveRecord::Base
     has_many :powers, through: :superhero_powers
     has_many :superhero_comics
     has_many :comics, through: :superhero_comics
-    #is the order of this right?
+    
+    def superhero_featured_in
+        #returns all comics the superhero is featured in
+        self.comics.pluck(:title).join(", ")
+    end
+    
+    def comic_count
+        #counts how many comics a given superhero is mentioned in
+        self.comics.count
+    end
+
+    
 end

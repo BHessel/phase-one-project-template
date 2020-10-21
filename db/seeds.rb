@@ -15,7 +15,7 @@ tony = Comic.find_or_create_by(title: "Tony Stark: Ironman", author: "Dan Slott"
 journey = Comic.find_or_create_by(title: "Journey into Mystery", author: "Stan Lee")
 xmen = Comic.find_or_create_by(title: "Age of Apocalypse", author: "Scott Lobdell")
 spider = Comic.find_or_create_by(title: "The Amazing Spider-man", author: "Ferreira Spencer")
-avengers = Comic.find_or_create_by(title: "Avengers", author: "Garron Aaron")
+avengers = Comic.find_or_create_by(title: "Avengers", author: "Stan Lee") #Garron Aaron
 
 
 strength = Power.find_or_create_by(name: "superhuman strength")
@@ -34,7 +34,8 @@ pantherpower1 = SuperheroPower.find_or_create_by(superhero_id: panther.id, power
 pantherpower2 = SuperheroPower.find_or_create_by(superhero_id: panther.id, power_id: speed.id)
 
 hulkcomic = SuperheroComic.find_or_create_by(superhero_id: hulk.id, comic_id: incredible_hulk.id)
-wolverinecomic = SuperheroComic.find_or_create_by(superhero_id: wolverine.id, comic_id: xmen.id)
+wolverinecomic1 = SuperheroComic.find_or_create_by(superhero_id: wolverine.id, comic_id: xmen.id)
+wolverinecomic2 = SuperheroComic.find_or_create_by(superhero_id: wolverine.id, comic_id: incredible_hulk.id)
 captaincomic = SuperheroComic.find_or_create_by(superhero_id: captain.id, comic_id: winter.id)
 thorcomic = SuperheroComic.find_or_create_by(superhero_id: thor.id, comic_id: journey.id)
 ironmancomic = SuperheroComic.find_or_create_by(superhero_id: ironman.id, comic_id: avengers.id)
