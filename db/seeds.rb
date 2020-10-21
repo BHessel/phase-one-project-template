@@ -1,21 +1,21 @@
 require 'pry'
 
-wolverine = Superheroes.find_or_create_by(name: "Wolverine")
-hulk = Superheroes.find_or_create_by(name: "Hulk")
-captain = Superheroes.find_or_create_by(name: "Captain America")
-thor = Superheroes.find_or_create_by(name: "Thor")
-ironman = Superheroes.find_or_create_by(name: "Ironman")
-spiderman = Superheros.find_or_create_by(name: "Spiderman")
-panther= Superheros.find_or_create_by(name: "Black Panther")
+wolverine = Superhero.find_or_create_by(name: "Wolverine")
+hulk = Superhero.find_or_create_by(name: "Hulk")
+captain = Superhero.find_or_create_by(name: "Captain America")
+thor = Superhero.find_or_create_by(name: "Thor")
+ironman = Superhero.find_or_create_by(name: "Ironman")
+spiderman = Superhero.find_or_create_by(name: "Spiderman")
+panther= Superhero.find_or_create_by(name: "Black Panther")
 
 
-incredible_hulk = Comics.find_or_create_by(title: "The Incredible Hulk #180", writer: "Len Wein") #wolverine's first appearance
-winter = Comics.find_or_create_by(title: "The Winter Soldier", writer: "Ed Brubaker")
-tony = Comics.find_or_create_by(title: "Tony Stark: Ironman", writer: "Dan Slott")
-journey = Comics.find_or_create_by(title: "Journey into Mystery", writer: "Stan Lee")
-xmen = Comics.find_or_create_by(title: "Age of Apocalypse", writer: "Scott Lobdell")
-spider = Comics.find_or_create_by(title: "The Amazing Spider-man", writer: "Ferreira Spencer")
-avengers = Comics.find_or_create_by(title: "Avengers", writer: "Garron Aaron")
+incredible_hulk = Comic.find_or_create_by(title: "The Incredible Hulk #180", author: "Len Wein") #wolverine's first appearance
+winter = Comic.find_or_create_by(title: "The Winter Soldier", author: "Ed Brubaker")
+tony = Comic.find_or_create_by(title: "Tony Stark: Ironman", author: "Dan Slott")
+journey = Comic.find_or_create_by(title: "Journey into Mystery", author: "Stan Lee")
+xmen = Comic.find_or_create_by(title: "Age of Apocalypse", author: "Scott Lobdell")
+spider = Comic.find_or_create_by(title: "The Amazing Spider-man", author: "Ferreira Spencer")
+avengers = Comic.find_or_create_by(title: "Avengers", author: "Garron Aaron")
 
 
 strength = Power.find_or_create_by(name: "superhuman strength")
