@@ -15,5 +15,12 @@ class Superhero < ActiveRecord::Base
         self.comics.count
     end
 
+    def show_powers
+        #shows a superheroes powers
+        self.powers.pluck(:name).join(", ")
+        #binding.pry
+    end
+
+
     
 end
