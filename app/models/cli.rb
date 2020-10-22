@@ -1,16 +1,10 @@
 
-class CLI
+class CLI 
     
     def run 
         welcome
         main_menu
         
-        # select_superhero
-        # if #user selects
-        #     #1 3 5
-        #     superhero_list
-        # elsif #user selects 2 or 4
-        #     comic_list
     end
     
     def welcome      #quick instructions on how app works
@@ -23,14 +17,10 @@ class CLI
         puts "Welcome to the Marvel Universe, #{name}!"
     end
 
-    # def superhero_list2
-    #     puts "Hello"
-        
-    # end
     
     def main_menu
         prompt = TTY::Prompt.new
-        prompt.select("What would you like to look up first?") do |menu|
+        menuchoice = prompt.select("What would you like to look up first?") do |menu|
             menu.default 6
             
             menu.choice "Show me a Superheroes powers", 1
@@ -39,6 +29,12 @@ class CLI
             menu.choice "All comics written by a given author", 4
             menu.choice "Show the author of a selected comic", 5
             menu.choice "Learn how many comics a Superhero is in", 6
+        end
+
+        if menuchoice == 1
+            select_superhero
+        elsif menuchoice == 2
+            comic_list
         end
     
 
@@ -69,17 +65,25 @@ class CLI
     def select_superhero
         prompt = TTY::Prompt.new
         #this is a list of all superheroes
-        prompt.select("Choose your hero", per_page: 10) do |menu|
-            menu.choice "Wolverine"
-            menu.choice "Hulk"
-            menu.choice "Captain America"
-            menu.choice "Thor"
-            menu.choice "Ironman"
-            menu.choice "Spiderman"
-            menu.choice "Black Panther"
-            menu.choice "Return to Main Menu"
+        herochoice = prompt.select("Choose your hero", per_page: 10) do |menu|
+            menu.default 8
+
+            menu.choice "Wolverine", 1
+            menu.choice "Hulk", 2
+            menu.choice "Captain America", 3
+            menu.choice "Thor", 4
+            menu.choice "Ironman", 5
+            menu.choice "Spiderman", 6
+            menu.choice "Black Panther", 7
+            menu.choice "Return to Main Menu", 8
         end
 
+        if herochoice == 1
+            wolverine.show_powers
+            #shows Wolverine's powers
+        elsif herochoice == 2
+            comic_list
+        end
         #We don't want to hardcode the names in case more SH's get added to the API over time
             #How do we make a dynamic SH list, so that each SH's name appears on a new line
     end
