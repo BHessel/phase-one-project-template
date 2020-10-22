@@ -1,17 +1,23 @@
-require_relative "../../config/environment.rb" #may only need one ../ ?
+
 
 class CLI
 
-    def welcome
-        #quick instructions on how app works
-            #Welcome to Superhero/Marvel Lookup where you can
-                #search for your favorite superheroes from our movies
-                #and learn more about them, and the comics that brought
-                #each character to life.
-        #puts "What is your name?"
-        #user gets.chomp
-        #this is to reference while using the app, we don't care
-            #to store it
+    def run 
+        welcome
+        #main_menu
+    end
+
+
+
+    def welcome      #quick instructions on how app works
+        puts "Welcome to Marvel Superhero Lookup!"
+        sleep(1)
+        puts "You can search for your favorite Marvel superheroes to learn more about them,
+        and find the original comics that brought each character to life."
+        sleep(1)
+        puts "What is your name?"
+        name = gets.chomp
+        puts "Welcome to the Marvel Universe, #{name}!"
     end
 
     def main_menu
