@@ -18,9 +18,6 @@ class Superhero < ActiveRecord::Base
     def show_powers
         #shows a superheroes powers
         self.powers.pluck(:name).join(", ")
-        #binding.pry
     end
 
-
-    
 end
