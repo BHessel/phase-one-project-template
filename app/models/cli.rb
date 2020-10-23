@@ -21,13 +21,13 @@ class CLI
     def main_menu
         prompt = TTY::Prompt.new
         menuchoice = prompt.select("What would you like to look up first?") do |menu|
-            menu.default 5
-            
+           
             menu.choice "Show me a Superheroes powers", 1
             menu.choice "Show all comics a Superhero is in", 2
             menu.choice "All comics written by a given author", 3
             menu.choice "Show the author of a selected comic", 4
             menu.choice "Learn how many comics a Superhero is in", 5
+            menu.choice "Exit the app to go fight evil", 6
         end
 
         if menuchoice == 1
@@ -37,9 +37,11 @@ class CLI
         elsif menuchoice == 3
             author_shows_comics
         elsif menuchoice == 4
-            comic__show_author
-        else menuchoice == 5
+            comic_show_author
+        elsif menuchoice == 5
             superhero_comic_count
+        else menuchoice == 6
+            exit_app 
         end
     
         #puts "release date of comics"       
@@ -56,15 +58,14 @@ class CLI
     def character_list_helper
         prompt = TTY::Prompt.new
         prompt.select("Choose your hero", per_page: 10) do |menu|
-            menu.default 8
 
-            menu.choice Superhero.find_by(id: 1), 1
-            menu.choice Superhero.find_by(id: 2), 2
-            menu.choice Superhero.find_by(id: 3), 3
-            menu.choice Superhero.find_by(id: 4), 4
-            menu.choice Superhero.find_by(id: 5), 5
-            menu.choice Superhero.find_by(id: 6), 6
-            menu.choice Superhero.find_by(id: 7), 7
+            menu.choice Superhero.find_by(id: 1)["name"], 1
+            menu.choice Superhero.find_by(id: 2)["name"], 2
+            menu.choice Superhero.find_by(id: 3)["name"], 3
+            menu.choice Superhero.find_by(id: 4)["name"], 4
+            menu.choice Superhero.find_by(id: 5)["name"], 5
+            menu.choice Superhero.find_by(id: 6)["name"], 6
+            menu.choice Superhero.find_by(id: 7)["name"], 7
             menu.choice "Return to Main Menu", 8
         end
     end
@@ -72,7 +73,6 @@ class CLI
     def author_list_helper
         prompt = TTY::Prompt.new
         prompt.select("Select an author", per_page: 10) do |menu|
-            menu.default 8
 
             menu.choice Comic.find_by(id: 1)["author"], 1
             menu.choice Comic.find_by(id: 2)["author"], 2
@@ -89,18 +89,16 @@ class CLI
         #allows user to select from all comics
         prompt = TTY::Prompt.new
         prompt.select("Select a comic", per_page: 10) do |menu|
-            menu.default 8
 
-            menu.choice "The Incredible Hulk #180", 1
-            menu.choice "The Winter Soldier", 2
-            menu.choice "Tony Stark: Ironman", 3
-            menu.choice "Journey into Mystery", 4
-            menu.choice "Age of Apocalypse", 5
-            menu.choice "The Amazing Spider-man", 6
-            menu.choice "Avengers", 7
+            menu.choice Comic.find_by(id: 1)["title"], 1
+            menu.choice Comic.find_by(id: 2)["title"], 2
+            menu.choice Comic.find_by(id: 3)["title"], 3
+            menu.choice Comic.find_by(id: 4)["title"], 4
+            menu.choice Comic.find_by(id: 5)["title"], 5
+            menu.choice Comic.find_by(id: 6)["title"], 6
+            menu.choice Comic.find_by(id: 7)["title"], 7
             menu.choice "Return to Main Menu", 8
         end
-
     end
 
 
@@ -110,7 +108,7 @@ class CLI
 
         if herochoice == 1
             #shows Wolverine's powers, returns to main menu after 5 sec
-            Superhero.find_by(id: 1).show_powers #this works in rake console, but now our list in the CL only shows objects not names
+            Superhero.find_by(id: 1).show_powers 
             return_to_main
         elsif herochoice == 2
             Superhero.find_by(id: 2).show_powers
@@ -133,8 +131,6 @@ class CLI
         else herochoice == 8
             main_menu
         end
-        #We don't want to hardcode the names in case more SH's get added to the API over time
-            #How do we make a dynamic SH list, so that each SH's name appears on a new line
     end
 
 
@@ -147,7 +143,7 @@ class CLI
             Superhero.find_by(id: 1).superhero_featured_in
             return_to_main
         elsif herocomics == 2
-            Comic.all_comics_by_author("Len Wein")
+            Superhero.find_by(id: 2).superhero_featured_in
             return_to_main
         elsif herocomics == 3
             Superhero.find_by(id: 3).superhero_featured_in
@@ -167,8 +163,6 @@ class CLI
         else herocomics == 8
             main_menu
         end
-        #We don't want to hardcode the names in case more SH's get added to the API over time
-            #How do we make a dynamic SH list, so that each SH's name appears on a new line
     end
 
 
@@ -177,31 +171,29 @@ class CLI
         author = author_list_helper
 
         if author == 1
-            Comic.all_comics_by_author("Len Wein")
+            Comic.all_comics_by_author(1)
             return_to_main
         elsif author == 2
-            Comic.all_comics_by_author("Ed Brubaker")
+            Comic.all_comics_by_author(2)
             return_to_main
         elsif author == 3
-            Comic.all_comics_by_author("Dan Slott")
+            Comic.all_comics_by_author(3)
             return_to_main
         elsif author == 4
-            Comic.all_comics_by_author("Stan Lee")
+            Comic.all_comics_by_author(4)
             return_to_main
         elsif author == 5
-            Comic.all_comics_by_author("Scott Lobdell")
+            Comic.all_comics_by_author(5)
             return_to_main
         elsif author == 6
-            Comic.all_comics_by_author("Ferreira Spencer")
+            Comic.all_comics_by_author(6)
             return_to_main
         elsif author == 7
-            Comic.all_comics_by_author("Garron Aaron")  #we know this b/c of looking at the table, but 8 would be the same comic w/ Stan Lee as author, and then would repeat on this menu list which we don't want
+            Comic.all_comics_by_author(7)  
             return_to_main
         else author == 8
             main_menu
         end
-        #We don't want to hardcode the names in case more SH's get added to the API over time
-            #How do we make a dynamic SH list, so that each SH's name appears on a new line
     end
 
 
@@ -265,18 +257,12 @@ class CLI
         else comicauthor == 8
             main_menu
         end
-        #We don't want to hardcode the names in case more SH's get added to the API over time
-            #How do we make a dynamic SH list, so that each SH's name appears on a new line
     end
 
 
-
-
-
-    def exit
-        #for leaving the app
-        #leaves w/ nice comment/insider joke
+    def exit_app  #for leaving the app
+        puts "Thanks for keeping the world safe!"
+        sleep(3)
+        exit
     end
-
-
 end

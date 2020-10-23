@@ -10,7 +10,6 @@ class Comic < ActiveRecord::Base
         #returns author of given comic
         self.author 
     end
-
     
     def self.all_comics_by_author(author)
         #returns all comics by a given author
