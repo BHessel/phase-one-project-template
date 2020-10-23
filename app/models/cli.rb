@@ -1,6 +1,5 @@
 
 class CLI 
-    
     $prompt = TTY::Prompt.new
 
     def run 
@@ -44,12 +43,8 @@ class CLI
         else menuchoice == 6
             exit_app 
         end
-    
-        #puts "release date of comics"       
-            #SH list (which SH's comics?)
-            #shows comics and their release dates
+ 
     end
-
 
     def return_to_main
         sleep(5)
@@ -66,11 +61,6 @@ class CLI
         end
 
         $prompt.select("Choose your hero:", super_hash, per_page: 10)
-    end
-
-
-    def author_list_helper
-        author = Comic.group(:author).pluck(:author)
     end
 
 
@@ -149,7 +139,8 @@ class CLI
 
 
     def author_shows_comics
-        @selected_auth = $prompt.select("Select an author:", author_list_helper, per_page: 7) 
+        author = Comic.group(:author).pluck(:author)
+        @selected_auth = $prompt.select("Select an author:", author, per_page: 7) 
         all_commics = Comic.all_comics_by_author(@selected_auth)
         puts all_commics
         return_to_main
@@ -219,7 +210,7 @@ class CLI
 
 
     def exit_app  #for leaving the app
-        puts "Thanks for keeping the world safe!"
+        $prompt.say("Thanks for keeping the world safe!", color: :red)
         sleep(3)
         exit
     end
