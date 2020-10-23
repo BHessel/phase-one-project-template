@@ -27,7 +27,7 @@ class CLI
             menu.choice "All comics written by a given author", 3
             menu.choice "Show the author of a selected comic", 4
             menu.choice "Learn how many comics a Superhero is in", 5
-            menu.choice "Exit the app to go fight evil", 6
+            menu.choice "Exit the app to go fight evil!", 6
         end
 
         if menuchoice == 1
@@ -57,18 +57,19 @@ class CLI
 
     def character_list_helper
         prompt = TTY::Prompt.new
-        prompt.select("Choose your hero", per_page: 10) do |menu|
-
-            menu.choice Superhero.find_by(id: 1)["name"], 1
-            menu.choice Superhero.find_by(id: 2)["name"], 2
-            menu.choice Superhero.find_by(id: 3)["name"], 3
-            menu.choice Superhero.find_by(id: 4)["name"], 4
-            menu.choice Superhero.find_by(id: 5)["name"], 5
-            menu.choice Superhero.find_by(id: 6)["name"], 6
-            menu.choice Superhero.find_by(id: 7)["name"], 7
-            menu.choice "Return to Main Menu", 8
+        
+        shero = Superhero.pluck(:id, :name)
+        super_hash = {}
+        
+        shero.each do |hero|
+        # shero = [id, name], supe[0] == id, supe[1] == name
+        super_hash[hero[1]] = hero[0]
         end
+
+        #binding.pry
+        prompt.select("Choose your hero:", super_hash)#, per_page: 10)
     end
+
 
     def author_list_helper
         prompt = TTY::Prompt.new
