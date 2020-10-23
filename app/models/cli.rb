@@ -39,7 +39,7 @@ class CLI
         elsif menuchoice == 4
             comic_list_helper
         else menuchoice == 5
-            comic_list
+            superhero_comic_count
         end
     
         #puts "release date of comics"       
@@ -205,7 +205,36 @@ class CLI
     end
 
 
-    
+    def superhero_comic_count
+        prompt = TTY::Prompt.new
+        herocount = character_list_helper
+
+        if herocount == 1
+            Superhero.find_by(id: 1).comic_count
+            return_to_main
+        elsif herocount == 2
+            Superhero.find_by(id: 2).comic_count
+            return_to_main
+        elsif herocount == 3
+            Superhero.find_by(id: 3).comic_count
+            return_to_main
+        elsif herocount == 4
+            Superhero.find_by(id: 4).comic_count
+            return_to_main
+        elsif herocount == 5
+            Superhero.find_by(id: 5).comic_count
+            return_to_main
+        elsif herocount == 6
+            Superhero.find_by(id: 6).comic_count
+            return_to_main
+        elsif herocount == 7
+            Superhero.find_by(id: 7).comic_count
+            return_to_main
+        else herocount == 8
+            main_menu
+        end
+        
+    end
 
 
 
