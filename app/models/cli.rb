@@ -37,7 +37,7 @@ class CLI
         elsif menuchoice == 3
             author_shows_comics
         elsif menuchoice == 4
-            comic_list_helper
+            comic__show_author
         else menuchoice == 5
             superhero_comic_count
         end
@@ -235,6 +235,41 @@ class CLI
         end
         
     end
+
+
+    def comic_show_author
+        prompt = TTY::Prompt.new
+        comicauthor = comic_list_helper
+
+        if comicauthor == 1
+            Comic.find_by(id: 2).find_author
+            return_to_main
+        elsif comicauthor == 2
+            Comic.find_by(id: 2).find_author
+            return_to_main
+        elsif comicauthor == 3
+            Comic.find_by(id: 3).find_author
+            return_to_main
+        elsif comicauthor == 4
+            Comic.find_by(id: 4).find_author
+            return_to_main
+        elsif comicauthor == 5
+            Comic.find_by(id: 5).find_author
+            return_to_main
+        elsif comicauthor == 6
+            Comic.find_by(id: 6).find_author
+            return_to_main
+        elsif comicauthor == 7
+            Comic.find_by(id: 7).find_author
+            return_to_main
+        else comicauthor == 8
+            main_menu
+        end
+        #We don't want to hardcode the names in case more SH's get added to the API over time
+            #How do we make a dynamic SH list, so that each SH's name appears on a new line
+    end
+
+
 
 
 
